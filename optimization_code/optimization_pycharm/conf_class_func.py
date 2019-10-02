@@ -17,10 +17,10 @@ conf = {
     'STABILITY_PARAMETER_f': [],
 
     # source locations (should be configured according to number of sources)
-    'SOURCE_LOC': np.array([[200,300],[300,700],[650,400],[450,200],[200,500]]),
+    'SOURCE_LOC': [],
 
     # leak rates[kg/sec]
-    'Q_SOURCE': np.array([])
+    'Q_SOURCE': []
 }
 
 class Config(object):
@@ -40,11 +40,11 @@ class API:
     configFile = Config()
 
     # methods
-    def distance(*arg, x1_cor, y1_cor, x2_cor, y2_cor):
+    def distance(self, x1_cor, y1_cor, x2_cor, y2_cor):
         d = np.sqrt((x1_cor - x2_cor) ** 2 + (y1_cor - y2_cor) ** 2)
         return d
 
-    def getCurveByWindDirection(*arg, windDirection):
+    def getCurveByWindDirection(self, windDirection):
         '''the function returns the slope of the vector from wind direction [degrees].
         alpha is the angle between the vector of the wind and the positive direction of X axis'''
         omega = windDirection
@@ -60,7 +60,7 @@ class API:
         # y = m*(x-x1) + y1 =>
         # n = -x1*m + y1
 
-    def getLineEquation(*arg, x1_cor, y1_cor, m):
+    def getLineEquation(self, x1_cor, y1_cor, m):
         '''the function returns the equation of a line by the slope=m and known point (x1,y1).
         n is the intercept with Y axis. the line equation is: y-y1 = m*(x-x1) => y = m*(x-x1)+y1,
         and when x=0 we get n:'''
@@ -71,7 +71,7 @@ class API:
     #       and n, the point is x and y
     #       the equation is: d = (abs (-mx0 + y0 - n))/(sqrt(m^2 +1))
 
-    def getDistanceFromPointToLine(*arg, m, n, x0, y0):
+    def getDistanceFromPointToLine(self, m, n, x0, y0):
         '''get distance between a line and a point, the line is represented by m (slope) and n (equation),
         the point is x and y. the equation is d'''
         d = (np.abs(-m * x0 + y0 - n)) / (np.sqrt(m ** 2 + 1))  # 1 is the coefficient of y in the line equation
@@ -93,6 +93,7 @@ class API:
 
         # X distance: In meters
         x_distance_meters = obj.distance(x_sen, y_sen, x_source, y_source) * grid_scale
+        print(x_distance_meters)
         x_distance_kilometers = (x_distance_meters / 1000)
 
         # the slope of the wind direction refere to X axis
@@ -117,8 +118,9 @@ class API:
         sigma_y = a * (x_distance_kilometers ** 0.894)
         sigma_z = c * (x_distance_kilometers ** d) + f
 
-        C = (Q / (U * sigma_y * sigma_z * np.pi)) * (
-                    np.exp(-(y_distance ** 2) / (2 * (sigma_y ** 2))) * np.exp(-(He ** 2) / (2 * (sigma_z ** 2))))
+        if x_distance_kilometers == 0:
+            print('x_distance_kilometers is zero')
+        C = (Q / (U * sigma_y * sigma_z * np.pi)) * (np.exp(-(y_distance ** 2) / (2 * (sigma_y ** 2))) * np.exp(-(He ** 2) / (2 * (sigma_z ** 2))))
         return C
 
     def addGausienNoise(obj, oldSignal):
@@ -126,7 +128,7 @@ class API:
         noiseRange = obj.configFile.get_property('NOISE_RANGE')
         noiseLevelA = -(noiseRange)
         noiseLevelB = noiseRange
-        noise = noiseLevelA + (noiseLevelB - noiseLevelA) * rand
+        noise = noiseLevelA + (noiseLevelB - noiseLevelA) * np.random.uniform()
 
         newSignal = oldSignal + noise * oldSignal
 
@@ -179,23 +181,23 @@ def calculateDisp(Q_source, sensorArray, WD, WS, SC):  # in matlab called idit_C
     configFile = Config()
     sizeOfStudyArea = configFile.get_property('GRID_SIZE')
 
-    # Source locations (!!! maybe try to enable flexibility in number of sources and locations!!!)
+    # Source locations
     sourceLocations = configFile.get_property('SOURCE_LOC')
 
     sourceArray = np.zeros((np.size(Q_source), 3))
     for i in range(np.size(Q_source)):
-        sourceArray[i, 1] = sourceLocations[i,0]  # x coord
-        sourceArray[i, 2] = sourceLocations[i,1] # Y coord
-        sourceArray[i, 3] = Q_source[i]
+        sourceArray[i, 0] = sourceLocations[i][0]  # x coord
+        sourceArray[i, 1] = sourceLocations[i][1] # Y coord
+        sourceArray[i, 2] = Q_source[i]
 
     for i in range(np.size(sensorArray, 0)):
         totalAmbientDataOfSensor = 0
         for j in range(np.size(sourceArray, 0)):
-            ambientDataFromOneSource = svAPI.calculateSensorCon(sensorArray[i, 1], sensorArray[i, 2], sourceArray[j, 1],
-                                                                sourceArray[j, 2], sourceArray[j, 3])
-            ambientDataFromOneSource = svAPI.addGausienNoise(ambientDataFromOneSource)
+            ambientDataFromOneSource = svAPI.calculateSensorCon(sensorArray[i, 0], sensorArray[i, 1], sourceArray[j, 0],
+                                                                sourceArray[j, 1], sourceArray[j, 2])
+            # ambientDataFromOneSource = svAPI.addGausienNoise(ambientDataFromOneSource)
             totalAmbientDataOfSensor = totalAmbientDataOfSensor + ambientDataFromOneSource
-        sensorArray[i, 3] = totalAmbientDataOfSensor
+        sensorArray[i, 2] = totalAmbientDataOfSensor
 
     return sensorArray, sourceArray, sizeOfStudyArea
 

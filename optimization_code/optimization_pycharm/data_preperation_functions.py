@@ -1,26 +1,26 @@
 import numpy as np
+import numpy.matlib as npMat
 from itertools import combinations
-import conf_class_func
+import optimization_pycharm.conf_class_func as conf
 
-def initializeSimulation(numOfSources, emissionRates, distanceBetweenSensors, distanceFromSource):
+def initializeSimulation(numOfSources, sourceLoc, emissionRates, distanceBetweenSensors, distanceFromSource):
     '''Initialize Q_source and sensorArray. sensorArray is given Nan in places to exclude
     numOfSources = number of sources defined in the configuration file,
     emissionRates = an array of emission rates,
     distanceBetweenSensors = how many meters appart to place sensors,
     distanceFromSource = radious [meters] around the source where I can't place my sensors at'''
 
-    configFile = conf_class_func.Config()
+    configFile = conf.Config()
     boundery = configFile.get_property('GRID_SIZE')
 
-    # get source locations
+    # set source locations and emission rates
+    configFile.set_property('SOURCE_LOC',sourceLoc)
+    configFile.set_property('Q_SOURCE',emissionRates)
+    # get source loactions and emission rates
     sourceLocations = configFile.get_property('SOURCE_LOC')
+    Q_source = configFile.get_property('Q_SOURCE')
 
-    # set source emission rates
-    Q_source = np.zeros((numOfSources))
-    for i in range(1, numOfSources + 1):
-        Q_source[i - 1] = configFile.set_property('Q_SOURCE_' + str(i), emissionRates[i - 1])
-
-    # place potential sensors all over the area, distanceBetweenSensors meter appart
+    # place potential sensors all over the area, distanceBetweenSensors in meters appart
     [X, Y] = np.meshgrid(np.arange(0, boundery + distanceBetweenSensors, distanceBetweenSensors),
                          np.arange(0, boundery + distanceBetweenSensors, distanceBetweenSensors))
 
@@ -33,7 +33,8 @@ def initializeSimulation(numOfSources, emissionRates, distanceBetweenSensors, di
 
     sensors_to_exclude = []  # list
     for i in range(numOfSources):
-        sensors_to_exclude.append(np.matlib.repmat(sourceLocations[i, :], np.size(exclude, 0), 1) + exclude)
+        # repmat might not work depending on type sourceLocations (array?tuple?)
+        sensors_to_exclude.append(npMat.repmat(sourceLocations[i], np.size(exclude, 0), 1) + exclude)
     # convert to numpy array
     sensors_to_exclude = np.reshape(sensors_to_exclude, (np.size(exclude, 0) * numOfSources, 2))
 
@@ -82,7 +83,7 @@ def calcSensorsReadings(Q_source, sensorArray, WD, WS, ASC):
         total_s.append(s)
 
     for scenario, active in enumerate(total_s):
-        sensorArray, _, _ = conf_class_func.calculateDisp(Q_source * active, sensorArray, WD, WS, ASC)
+        sensorArray, _, _ = conf.calculateDisp(Q_source * active, sensorArray, WD, WS, ASC)
         total_s[scenario] = np.sum(active)
         totalField[:, scenario] = sensorArray[:, 2]
     #     total_cr = totalField
