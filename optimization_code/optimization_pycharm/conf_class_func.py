@@ -93,7 +93,6 @@ class API:
 
         # X distance: In meters
         x_distance_meters = obj.distance(x_sen, y_sen, x_source, y_source) * grid_scale
-        print(x_distance_meters)
         x_distance_kilometers = (x_distance_meters / 1000)
 
         # the slope of the wind direction refere to X axis
@@ -118,8 +117,6 @@ class API:
         sigma_y = a * (x_distance_kilometers ** 0.894)
         sigma_z = c * (x_distance_kilometers ** d) + f
 
-        if x_distance_kilometers == 0:
-            print('x_distance_kilometers is zero')
         C = (Q / (U * sigma_y * sigma_z * np.pi)) * (np.exp(-(y_distance ** 2) / (2 * (sigma_y ** 2))) * np.exp(-(He ** 2) / (2 * (sigma_z ** 2))))
         return C
 
