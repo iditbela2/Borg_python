@@ -26,13 +26,12 @@ Q_source, sensorArray, sensors_to_exclude = \
                                                     distanceBetweenSensors, distanceFromSource)
 
 # (2) calculate readings (totalField)
-# WD, WS, ASC = 270, 4, 2
-df = pd.read_pickle("/Users/iditbela/Documents/Borg_python/optimization_code/optimization_notebooks/WF_2004_2018_Hadera")
-# df is sorted
-weightedField = np.zeros(np.shape(totalField))
-# 144 states have certain probability different than zero
-numStates = df.loc[df.percent != 0,'s'].count()
 
+# df = pd.read_pickle("/Users/iditbela/Documents/Borg_python/optimization_code/optimization_notebooks/WF_2004_2018_Hadera")
+# # df is sorted
+# weightedField = np.zeros(np.shape(totalField))
+# # 144 states have certain probability different than zero
+# numStates = df.loc[df.percent != 0,'s'].count()
 # for state in range(numStates):
 #     wf = df.iloc[state].percent
 #     WD = df.iloc[state].WD_to_apply
@@ -118,3 +117,4 @@ vars = pd.DataFrame(data = vars)
 # save them
 objs.to_csv('objs.csv')
 vars.to_csv('vars.csv')
+np.save('nan_idx.npy', nan_idx)

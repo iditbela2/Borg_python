@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c46b82cf-bbe5-4d61-b0d5-5527056e964d" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea" beforeDir="false" afterPath="$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PCA_and_supervised_feature_selection/feature_selection_sensors.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../PCA_and_supervised_feature_selection/feature_selection_sensors.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimization_notebooks/.ipynb_checkpoints/results_analysis-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_notebooks/.ipynb_checkpoints/results_analysis-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimization_notebooks/results_analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_notebooks/results_analysis.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/optimization_pycharm/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_pycharm/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,8 +43,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="54" selection-start-line="54" selection-end-line="54" />
+            <state relative-caret-position="263">
+              <caret line="119" column="14" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="14" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -47,11 +52,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="a_posteriori_analysis.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="objective_function.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/objective_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="18" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="18" />
+            <state relative-caret-position="93">
+              <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="119" />
               <folding>
                 <element signature="e#161#179#0" expanded="true" />
               </folding>
@@ -131,6 +145,7 @@
         <option value="$PROJECT_DIR$/optimization_pycharm/data_preperation_functions.py" />
         <option value="$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py" />
         <option value="$PROJECT_DIR$/optimization_pycharm/objective_function.py" />
+        <option value="$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py" />
         <option value="$PROJECT_DIR$/optimization_pycharm/main.py" />
       </list>
     </option>
@@ -328,13 +343,13 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.4768786" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32947975" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="7" visible="true" weight="0.30635837" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="7" visible="true" weight="0.37283236" />
       <window_info anchor="right" id="Coverage" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32947975" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15489914" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18731989" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3299712" />
-      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.3148415" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.24855907" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39884394" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -392,10 +407,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/optimization_pycharm/objective_function.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="18" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="18" />
+        <state relative-caret-position="93">
+          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="119" />
           <folding>
             <element signature="e#161#179#0" expanded="true" />
           </folding>
@@ -404,8 +426,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/optimization_pycharm/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        <state relative-caret-position="263">
+          <caret line="119" column="14" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="14" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
