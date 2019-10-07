@@ -1,6 +1,7 @@
 import numpy as np
+import csv
 import timeit
-np.set_printoptions(precision=10)
+# np.set_printoptions(precision=10)
 import pandas as pd
 import sys
 sys.path.append('/Users/iditbela/Documents/Borg_python/Borg_downloaded_code/serial-borg-moea/')
@@ -13,9 +14,9 @@ import data_preparation_functions
 import objective_function
 
 # (1) initialize the simulation
-num_S = 2
-emissionRates = np.array([0.7, 0.9])
-sourceLoc = np.array([[200,300],[200,700]])
+emissionRates = np.array([0.47, 0.51,0.38,0.9,0.19])
+sourceLoc = np.array([[200,300],[300,700],[650,400],[450,200],[200,500]])
+num_S = np.shape(emissionRates)[0]
 distanceBetweenSensors = 50
 distanceFromSource = 50
 
@@ -28,10 +29,10 @@ WD, WS, ASC = 270, 4, 2
 
 totalField, total_active = data_preparation_functions.calcSensorsReadings(Q_source, sensorArray, WD, WS, ASC)
 
-# a try
-sensorIdx = np.array([100,200,300])
-thr, dyR = 1,1
-PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR)
+# # a try
+# sensorIdx = np.array([100,200,300])
+# thr, dyR = 1,1
+# PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR)
 
 # (3) run optimization
 # which indices are NaNs?
@@ -44,14 +45,14 @@ np.shape(totalField)
 NumOfVars = NumOfSens_reduced  # Number of sensors
 NumOfObj = 2 # Number of Objectives
 NumOfCons = 2
-NFE=10e3 # the number of objective function evaluations, defines how many times
+NFE=10e5 # the number of objective function evaluations, defines how many times
 #the Borg MOEA can invoke objectiveFcn.  Once the NFE limit is reached, the
 #algorithm terminates and returns the result.
 
 borg = Borg(NumOfVars, NumOfObj, NumOfCons,
             objective_function.objective_func_factory(totalField, total_active))
 borg.setBounds(*[[0, 1]]*NumOfVars)
-borg.setEpsilons(1, 0.5e-3) #maybe - borg.setEpsilons(*[1, 0.5e-3])
+borg.setEpsilons(1, 0.5e-9) #maybe - borg.setEpsilons(*[1, 0.5e-7])
 
 tic=timeit.default_timer()
 
@@ -62,24 +63,43 @@ result = borg.solve({"maxEvaluations":NFE,
                      "runtime":output_loc + 'firstTry.runtime',
                      "frequency":runtime_frequency})
 
-
 toc=timeit.default_timer()
 print("elapsed time [sec]" + str(toc - tic))
 
-
 # extract data
-f = open(output_loc + 'results.csv', 'w')
+# f = open(output_loc + 'results.csv', 'w')
 # f.write('#Borg Optimization Results\n')
 # f.write('#First ' + str(NumOfVars) + ' are the decision variables, ' + 'last ' + str(NumOfObj) +
 #         ' are the ' + 'objective values\n')
+# for solution in result:
+#
+#     line = ''
+#     for i in range(len(solution.getVariables())):
+#         line = line + (str(solution.getVariables()[i])) + ' '
+#
+#     for i in range(len(solution.getObjectives())):
+#         line = line + (str(solution.getObjectives()[i])) + ' '
+#
+#     f.write(line[0:-1] + '\n')
+# # f.write("#")
+# f.close()
+
+# print data in console:
 for solution in result:
-    line = ''
-    for i in range(len(solution.getVariables())):
-        line = line + (str(solution.getVariables()[i])) + ' '
+    print(solution.getObjectives())
 
-    for i in range(len(solution.getObjectives())):
-        line = line + (str(solution.getObjectives()[i])) + ' '
 
-    f.write(line[0:-1] + '\n')
-# f.write("#")
-f.close()
+# extract vars and objs
+objs = []
+vars = []
+for solution in result:
+    objs.append(solution.getObjectives())
+    vars.append(solution.getVariables())
+
+# turn to df
+objs = pd.DataFrame(data = objs)
+vars = pd.DataFrame(data = vars)
+
+# save them
+objs.to_csv('objs.csv')
+vars.to_csv('vars.csv')

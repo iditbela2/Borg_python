@@ -20,7 +20,7 @@ def objective_func_factory(totalField, total_active):
         # CONSTRAINTS
         # constrain of minimum two sensors (more realistic) and maximum? 50/100/300
         cons1 = 2
-        cons2 = 100
+        cons2 = 50
         if objs[0] < cons1:
             constrs[0] = 1
         if objs[0] > cons2:

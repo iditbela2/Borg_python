@@ -4,11 +4,11 @@
     <list default="true" id="c46b82cf-bbe5-4d61-b0d5-5527056e964d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea" beforeDir="false" afterPath="$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimization_pycharm/conf_class_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_pycharm/conf_class_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimization_pycharm/data_preperation_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/optimization_pycharm/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_pycharm/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/optimization_pycharm/objective_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_pycharm/objective_function.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimization_pycharm/results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimization_pycharm/results.set" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimization_pycharm/results.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,8 +43,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="84" column="9" lean-forward="true" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
+            <state relative-caret-position="166">
+              <caret line="60" column="92" lean-forward="true" selection-start-line="60" selection-end-line="60" selection-end-column="92" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -55,8 +55,8 @@
       <file leaf-file-name="objective_function.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/objective_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="31" column="72" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="72" />
+            <state relative-caret-position="374">
+              <caret line="22" column="18" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="18" />
               <folding>
                 <element signature="e#161#179#0" expanded="true" />
               </folding>
@@ -67,8 +67,8 @@
       <file leaf-file-name="data_preparation_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="31" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="31" />
+            <state relative-caret-position="1683">
+              <caret line="99" selection-start-line="99" selection-end-line="99" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -79,8 +79,8 @@
       <file leaf-file-name="borg.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea/plugins/Python/borg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="156" column="50" selection-start-line="156" selection-start-column="46" selection-end-line="156" selection-end-column="50" />
+            <state relative-caret-position="4825">
+              <caret line="361" column="44" selection-start-line="361" selection-start-column="37" selection-end-line="361" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -88,8 +88,8 @@
       <file leaf-file-name="conf_class_func.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/conf_class_func.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2159">
-              <caret line="127" column="24" selection-start-line="127" selection-start-column="24" selection-end-line="127" selection-end-column="24" />
+            <state relative-caret-position="2023">
+              <caret line="119" column="32" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -118,8 +118,9 @@
       <find>getDistanceFromPointToLine</find>
       <find>print</find>
       <find>solve</find>
-      <find>dele</find>
       <find>seed</find>
+      <find>dele</find>
+      <find>runtime</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -165,6 +166,11 @@
             <path>
               <item name="optimization_code" type="b2602c69:ProjectViewProjectNode" />
               <item name="optimization_code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="optimization_code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="optimization_code" type="462c0819:PsiDirectoryNode" />
+              <item name="optimization_notebooks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="optimization_code" type="b2602c69:ProjectViewProjectNode" />
@@ -332,13 +338,13 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.4768786" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32947975" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="7" visible="true" weight="0.2947977" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="7" visible="true" weight="0.3367052" />
       <window_info anchor="right" id="Coverage" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32947975" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20317003" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3299712" />
-      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.27881846" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.31268013" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39884394" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -372,44 +378,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/optimization_pycharm/conf_class_func.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2159">
-          <caret line="127" column="24" selection-start-line="127" selection-start-column="24" selection-end-line="127" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="31" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="31" />
+        <state relative-caret-position="1683">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea/plugins/Python/borg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4825">
+          <caret line="361" column="44" selection-start-line="361" selection-start-column="37" selection-end-line="361" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optimization_pycharm/conf_class_func.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="119" column="32" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/optimization_pycharm/objective_function.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="31" column="72" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="72" />
+        <state relative-caret-position="374">
+          <caret line="22" column="18" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="18" />
           <folding>
             <element signature="e#161#179#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea/plugins/Python/borg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="156" column="50" selection-start-line="156" selection-start-column="46" selection-end-line="156" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/optimization_pycharm/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="84" column="9" lean-forward="true" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
+        <state relative-caret-position="166">
+          <caret line="60" column="92" lean-forward="true" selection-start-line="60" selection-end-line="60" selection-end-column="92" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
