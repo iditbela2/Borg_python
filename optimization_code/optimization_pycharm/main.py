@@ -9,12 +9,13 @@ from plugins.Python.borg import Borg
 from matplotlib import pyplot as plt
 
 sys.path.append('/Users/iditbela/Documents/Borg_python/optimization_code/optimization_pycharm')
+sys.path.append('/Users/iditbela/Documents/Borg_python/optimization_code/optimization_notebooks')
 import conf_class_func
 import data_preparation_functions
 import objective_function
 
 # (1) initialize the simulation
-emissionRates = np.array([0.47, 0.51,0.38,0.9,0.19])
+emissionRates = np.array([0.47,0.51,0.38,0.9,0.19])
 sourceLoc = np.array([[200,300],[300,700],[650,400],[450,200],[200,500]])
 num_S = np.shape(emissionRates)[0]
 distanceBetweenSensors = 50
@@ -25,9 +26,24 @@ Q_source, sensorArray, sensors_to_exclude = \
                                                     distanceBetweenSensors, distanceFromSource)
 
 # (2) calculate readings (totalField)
-WD, WS, ASC = 270, 4, 2
+# WD, WS, ASC = 270, 4, 2
+df = pd.read_pickle("/Users/iditbela/Documents/Borg_python/optimization_code/optimization_notebooks/WF_2004_2018_Hadera")
+# df is sorted
+weightedField = np.zeros(np.shape(totalField))
+# 144 states have certain probability different than zero
+numStates = df.loc[df.percent != 0,'s'].count()
 
-totalField, total_active = data_preparation_functions.calcSensorsReadings(Q_source, sensorArray, WD, WS, ASC)
+for state in range(numStates):
+    wf = df.iloc[state].percent
+    WD = df.iloc[state].WD_to_apply
+    WS = df.iloc[state].WS_to_apply
+    ASC = df.iloc[state].SC_to_apply
+    totalField, total_active = data_preparation_functions.calcSensorsReadings(Q_source, sensorArray, WD, WS, ASC)
+    mask=np.ones(np.shape(totalField))*wf
+    weightedField = weightedField + totalField*mask
+
+
+totalField = weightedField
 
 # # a try
 # sensorIdx = np.array([100,200,300])
@@ -87,7 +103,6 @@ print("elapsed time [sec]" + str(toc - tic))
 # print data in console:
 for solution in result:
     print(solution.getObjectives())
-
 
 # extract vars and objs
 objs = []
