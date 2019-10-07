@@ -33,17 +33,17 @@ weightedField = np.zeros(np.shape(totalField))
 # 144 states have certain probability different than zero
 numStates = df.loc[df.percent != 0,'s'].count()
 
-for state in range(numStates):
-    wf = df.iloc[state].percent
-    WD = df.iloc[state].WD_to_apply
-    WS = df.iloc[state].WS_to_apply
-    ASC = df.iloc[state].SC_to_apply
-    totalField, total_active = data_preparation_functions.calcSensorsReadings(Q_source, sensorArray, WD, WS, ASC)
-    mask=np.ones(np.shape(totalField))*wf
-    weightedField = weightedField + totalField*mask
+# for state in range(numStates):
+#     wf = df.iloc[state].percent
+#     WD = df.iloc[state].WD_to_apply
+#     WS = df.iloc[state].WS_to_apply
+#     ASC = df.iloc[state].SC_to_apply
+#     totalField, total_active = data_preparation_functions.calcSensorsReadings(Q_source, sensorArray, WD, WS, ASC)
+#     mask=np.ones(np.shape(totalField))*wf
+#     weightedField = weightedField + totalField*mask
+# np.save('weightedField', weightedField)
 
-
-totalField = weightedField
+totalField = np.load('weightedField.npy')
 
 # # a try
 # sensorIdx = np.array([100,200,300])
