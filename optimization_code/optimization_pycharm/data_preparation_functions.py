@@ -96,7 +96,8 @@ def calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR):
     (thr) and dynamic range (accordingly). The function should be used during the optimization process.
     PEDs is nX1 matrix where n=number of situations with different number of active sources.
     Scenario pairs specifies each pair of scenarios corresponding to the PED row in PEDs and the
-    number of active/inactive sources in those scenarios (3,4) and number of scenario combination(1,2)'''
+    number of active/inactive sources in those scenarios (3,4) and number of scenario combination(1,2)
+    totalField is passed without the nan indeces (396 and not 441, for example)'''
 
     # choose the relevant rows(=sensors) according to sensorIdx
     chosen_readings = totalField[sensorIdx, :]
