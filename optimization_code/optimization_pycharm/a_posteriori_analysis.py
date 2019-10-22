@@ -19,6 +19,7 @@ import sys
 sys.path.append('/Users/iditbela/Documents/Borg_python/Borg_downloaded_code/serial-borg-moea/')
 from plugins.Python.borg import Borg
 from matplotlib import pyplot as plt
+from scipy.stats import ranksums
 
 sys.path.append('/Users/iditbela/Documents/Borg_python/optimization_code/optimization_pycharm')
 sys.path.append('/Users/iditbela/Documents/Borg_python/optimization_code/optimization_notebooks')
@@ -38,7 +39,7 @@ Q_source, sensorArray, sensors_to_exclude = \
                                                     distanceBetweenSensors, distanceFromSource)
 
 
-# (2) generate all possible states/maps (number of maps = 32*144) when stacks emit average emissionss
+# (2) generate all possible states/maps (number of maps = 32*144) when stacks emit average emissions
 # df = pd.read_pickle("/Users/iditbela/Documents/Borg_python/optimization_code/optimization_notebooks/WF_2004_2018_Hadera")
 # # df is sorted
 # # 144 states have certain probability different than zero
@@ -58,21 +59,99 @@ Q_source, sensorArray, sensors_to_exclude = \
 # (2) compare PEDs of optimal Vs. non-optimal solutions (randomly generated) for all 144 weather states
 totalTotalField = np.load('totalTotalField.npy')
 total_active = np.load('total_active.npy')
+nan_idx = np.load('nan_idx.npy')
 
+# load optimal solutions
+resultsPath = '/Users/iditbela/Documents/Borg_python/optimization_code/results_WF/'
+objs = pd.read_csv(resultsPath+'objs.csv',header=None)
+vars = pd.read_csv(resultsPath+'vars.csv',header=None)
+objs.drop(0,axis=1,inplace=True)
+vars.drop(0,axis=1,inplace=True)
+objs.drop(0,axis=0,inplace=True)
+vars.drop(0,axis=0,inplace=True)
 
+vars = np.round(vars)
+# fix values of PED
+objs.iloc[:,1] = objs.iloc[:,1]*(-1)*1e9
+# sort optimal solutions
+sort_idx = np.argsort(objs.iloc[:,0])
+sorted_vars = vars.iloc[sort_idx,:]
+sorted_objs = objs.iloc[sort_idx,:]
 
-# ** remove the nan rows
-# nan_idx = np.ravel(np.argwhere(np.isnan(totalField[:,0])), order = 'F')
-# NumOfSens_reduced = np.shape(totalField)[0] - np.shape(nan_idx)[0]
-# totalField = np.delete(totalField, nan_idx, axis=0)
-# np.shape(totalField)
+sorted_objs.columns = ['numSens','mean_PED']
+sorted_objs.reset_index(drop=True, inplace = True)
+sorted_vars.reset_index(drop=True, inplace = True)
 
-# ** where is the sensorIdx
 thr, dyR = 1,1
-sensorIdx = np.argwhere(x).ravel()
+max_sensors = 80
+# calc PEDs for optimal solutions
+optimal_PEDs = np.zeros((np.size(range(2,max_sensors)),np.size(totalTotalField,2)))
 
-# ** calculate PED
-PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalTotalField[:,:,0], total_active, sensorIdx, thr, dyR)
-[c, idx] = np.unique(np.sort(scenario_pairs[:, 2:4], axis=1), axis=0, return_inverse=True)
-min_PED = PEDs.groupby(idx).min()
-mean_PED = np.mean(min_PED)
+for i, sol in enumerate(range(2,max_sensors)):
+    ind_sol = np.argwhere(sorted_objs.numSens == sol)
+    # ** where is the sensorIdx
+    sensorIdx = np.argwhere(sorted_vars.iloc[ind_sol.ravel(),:].values.ravel()).ravel()
+
+    for j, field in enumerate(range(np.size(totalTotalField,2))):
+        totalField = np.squeeze(totalTotalField[:,:,field])
+        # ** remove the nan rows **
+        totalField = np.delete(totalField, nan_idx, axis=0)
+        # ** calculate PED
+        PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR)
+        [c, idx] = np.unique(np.sort(scenario_pairs[:, 2:4], axis=1), axis=0, return_inverse=True)
+        min_PED = PEDs.groupby(idx).min()
+        mean_PED = np.mean(min_PED)
+        optimal_PEDs[i,j] = mean_PED
+        print(i,j)
+
+# calc PEDs for non-optimal solutions
+n_iterations = 100
+# P-VALUE IS NOT RELEVANT! IF ITS NOT THE SAME POPULATION IT DOESN'T MEAN THAT THE PEDS ARE STILL NOT HIGHER/LOWER!!!
+# totalpVals = np.zeros((n_iterations,np.size(range(2,max_sensors))))
+total_nonOptimal_PEDs = np.zeros(())
+
+for n in range(n_iterations):
+    nonOptimal_PEDs = np.zeros((np.size(range(2,max_sensors)),np.size(totalTotalField,2)))
+
+    for i, sol in enumerate(range(2,max_sensors)):
+        # random sensorIdx
+        sensorIdx = np.random.choice(np.arange(0, np.shape(totalTotalField)[0] - np.shape(nan_idx)[0]), sol)
+
+        for j, field in enumerate(range(np.size(totalTotalField,2))):
+            totalField = np.squeeze(totalTotalField[:,:,field])
+            # ** remove the nan rows **
+            totalField = np.delete(totalField, nan_idx, axis=0)
+            # ** calculate PED
+            PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR)
+            [c, idx] = np.unique(np.sort(scenario_pairs[:, 2:4], axis=1), axis=0, return_inverse=True)
+            min_PED = PEDs.groupby(idx).min()
+            mean_PED = np.mean(min_PED)
+            nonOptimal_PEDs[i,j] = mean_PED
+            # print(i,j)
+
+    # pvals = []
+    # for i, a in enumerate(range(2,max_sensors)):
+    #     pvals.append(ranksums(optimal_PEDs[i,:],nonOptimal_PEDs[i,:]).pvalue)
+    # pvals = np.array(pvals)
+    # totalpVals[n,:] = pvals
+
+    a = optimal_PEDs > nonOptimal_PEDs
+    plt.imshow(a)
+    plt.show()
+    np.sum(a) / (np.size(a, 0) * np.size(a, 1))
+
+    print(n)
+
+# np.save('totalpVals', totalpVals)
+# numSens = []
+# for i, a in enumerate(range(2,max_sensors)):
+#     numSens.append(a)
+#     print(np.sum(totalpVals[:,i]>0.05)/100)
+# numSens = np.array(numSens)
+# numSens[np.argwhere(pvals>0.05).ravel()]
+
+
+a = optimal_PEDs>nonOptimal_PEDs
+plt.imshow(a)
+plt.show()
+np.sum(a)/(np.size(a,0)*np.size(a,1))
