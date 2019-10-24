@@ -9,7 +9,6 @@
 # generate weather states according to frequency and stacks emit all kinds of emissions (+-50% from average)
 # compare PEDs of optimal Vs. non-optimal solutions (randomly generated)
 
-
 import numpy as np
 import csv
 import timeit
@@ -146,6 +145,7 @@ for n in range(n_iterations):
 #     print(np.sum(totalpVals[:,i]>0.05)/100)
 # numSens = np.array(numSens)
 # numSens[np.argwhere(pvals>0.05).ravel()]
+
 res = []
 for i in range(10):
     temp = total_nonOptimal_PEDs[:,:,i]
@@ -156,33 +156,33 @@ for i in range(10):
     # print(np.sum(a)/(np.size(a,0)*np.size(a,1)))
 
 
-# PED matrix
-totalField = np.load('weightedField.npy')
-sol = 9
-ind_sol = np.argwhere(sorted_objs.numSens == sol)
-# ** where is the sensorIdx
-sensorIdx = np.argwhere(sorted_vars.iloc[ind_sol.ravel(),:].values.ravel()).ravel()
-
-# ** remove the nan rows **
-totalField = np.delete(totalField, nan_idx, axis=0)
-# ** calculate PED
-PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR)
-[c, idx] = np.unique(np.sort(scenario_pairs[:, 2:4], axis=1), axis=0, return_inverse=True)
-min_PED = PEDs.groupby(idx).min()*1e9
-temp = np.concatenate((c,min_PED.values),axis=1)
-
-z = np.zeros((6,6))
-x = np.arange(0,6)
-y = np.arange(0,6)
-for i in range(np.shape(temp)[0]):
-    z[int(temp[i,0]),int(temp[i,1])] = temp[i,2]
-w = np.transpose(z)
-
-fig, ax = plt.subplots()
-ax.pcolor(x,y,z+w)
-ax.set_title('thick edges')
-fig.tight_layout()
-plt.show()
+# # PED matrix (in notebook)
+# totalField = np.load('weightedField.npy')
+# sol = 9
+# ind_sol = np.argwhere(sorted_objs.numSens == sol)
+# # ** where is the sensorIdx
+# sensorIdx = np.argwhere(sorted_vars.iloc[ind_sol.ravel(),:].values.ravel()).ravel()
+#
+# # ** remove the nan rows **
+# totalField = np.delete(totalField, nan_idx, axis=0)
+# # ** calculate PED
+# PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR)
+# [c, idx] = np.unique(np.sort(scenario_pairs[:, 2:4], axis=1), axis=0, return_inverse=True)
+# min_PED = PEDs.groupby(idx).min()*1e9
+# temp = np.concatenate((c,min_PED.values),axis=1)
+#
+# z = np.zeros((6,6))
+# x = np.arange(0,6)
+# y = np.arange(0,6)
+# for i in range(np.shape(temp)[0]):
+#     z[int(temp[i,0]),int(temp[i,1])] = temp[i,2]
+# w = np.transpose(z)
+#
+# fig, ax = plt.subplots()
+# ax.pcolor(x,y,z+w)
+# ax.set_title('thick edges')
+# fig.tight_layout()
+# plt.show()
 
 
 
