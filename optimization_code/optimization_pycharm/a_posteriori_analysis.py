@@ -108,7 +108,7 @@ for i, sol in enumerate(range(2,max_sensors)):
 n_iterations = 100
 # P-VALUE IS NOT RELEVANT! IF ITS NOT THE SAME POPULATION IT DOESN'T MEAN THAT THE PEDS ARE STILL NOT HIGHER/LOWER!!!
 # totalpVals = np.zeros((n_iterations,np.size(range(2,max_sensors))))
-total_nonOptimal_PEDs = np.zeros(())
+total_nonOptimal_PEDs = np.zeros((np.shape(optimal_PEDs)[0],np.shape(optimal_PEDs)[1],n_iterations))
 
 for n in range(n_iterations):
     nonOptimal_PEDs = np.zeros((np.size(range(2,max_sensors)),np.size(totalTotalField,2)))
@@ -135,13 +135,10 @@ for n in range(n_iterations):
     # pvals = np.array(pvals)
     # totalpVals[n,:] = pvals
 
-    a = optimal_PEDs > nonOptimal_PEDs
-    plt.imshow(a)
-    plt.show()
-    np.sum(a) / (np.size(a, 0) * np.size(a, 1))
-
+    total_nonOptimal_PEDs[:,:,n] = nonOptimal_PEDs
     print(n)
 
+# np.save('total_nonOptimal_PEDs', total_nonOptimal_PEDs)
 # np.save('totalpVals', totalpVals)
 # numSens = []
 # for i, a in enumerate(range(2,max_sensors)):
@@ -149,9 +146,11 @@ for n in range(n_iterations):
 #     print(np.sum(totalpVals[:,i]>0.05)/100)
 # numSens = np.array(numSens)
 # numSens[np.argwhere(pvals>0.05).ravel()]
-
-
-a = optimal_PEDs>nonOptimal_PEDs
-plt.imshow(a)
-plt.show()
-np.sum(a)/(np.size(a,0)*np.size(a,1))
+res = []
+for i in range(10):
+    temp = total_nonOptimal_PEDs[:,:,i]
+    a = optimal_PEDs>temp
+    plt.imshow(a)
+    plt.show()
+    # res.append(np.sum(a) / (np.size(a, 0) * np.size(a, 1)))
+    # print(np.sum(a)/(np.size(a,0)*np.size(a,1)))
