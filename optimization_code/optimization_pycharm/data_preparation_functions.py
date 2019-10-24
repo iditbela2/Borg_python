@@ -100,6 +100,7 @@ def calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR):
     totalField is passed without the nan indeces (396 and not 441, for example)'''
 
     # choose the relevant rows(=sensors) according to sensorIdx
+
     chosen_readings = totalField[sensorIdx, :]
     numOfSensors = np.size(sensorIdx)
     numOfSources = np.size(total_active, 1)
