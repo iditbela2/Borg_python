@@ -20,13 +20,13 @@ def objective_func_factory(totalField, total_active):
         # CONSTRAINTS
         # constrain of minimum two sensors (more realistic) and maximum? 50/100/300
         cons1 = 2
-        cons2 = 50
+        cons2 = 100
         if objs[0] < cons1:
             constrs[0] = 1
         if objs[0] > cons2:
             constrs[1] = 1
 
-        # OBJECTIVE - 2
+        # OBJECTIVE - 2s
         sensorIdx = np.argwhere(x).ravel()
         thr, dyR = 1, 1
         PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR)

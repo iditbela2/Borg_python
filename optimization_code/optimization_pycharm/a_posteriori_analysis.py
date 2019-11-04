@@ -92,7 +92,7 @@ for i, sol in enumerate(range(2,max_sensors)):
     sensorIdx = np.argwhere(sorted_vars.iloc[ind_sol.ravel(),:].values.ravel()).ravel()
 
     for j, field in enumerate(range(np.size(totalTotalField,2))):
-        totalField = np.squeeze(totalTotalField[:,:,field])
+                totalField = np.squeeze(totalTotalField[:,:,field])
         # ** remove the nan rows **
         totalField = np.delete(totalField, nan_idx, axis=0)
         # ** calculate PED
@@ -102,6 +102,8 @@ for i, sol in enumerate(range(2,max_sensors)):
         mean_PED = np.mean(min_PED)
         optimal_PEDs[i,j] = mean_PED
         print(i,j)
+
+# np.save('optimal_PEDs', optimal_PEDs)
 
 # calc PEDs for non-optimal solutions
 n_iterations = 100
@@ -155,7 +157,6 @@ for i in range(10):
     # res.append(np.sum(a) / (np.size(a, 0) * np.size(a, 1)))
     # print(np.sum(a)/(np.size(a,0)*np.size(a,1)))
 
-
 # # PED matrix (in notebook)
 # totalField = np.load('weightedField.npy')
 # sol = 9
@@ -186,10 +187,66 @@ for i in range(10):
 
 
 
+# # boxplot compare optimal Vs. non-optimal
+# fig = plt.figure()
+# fig.suptitle('Solution comparison')
+# ax = fig.add_subplot()
+# # optimal
+# bpOptimal = plt.boxplot(optimal_PEDs[0:40,:].transpose(), showfliers=False, positions = np.arange(1,41)-0.3, widths=0.25, patch_artist=True)
+# plt.setp(bpOptimal['boxes'], color='blue')
+# for patch in bpOptimal['boxes']:
+#     patch.set_facecolor('blue')
+#     patch.set_alpha(0.3)
+# # non-optimal
+# bpnonOptimal = plt.boxplot(total_nonOptimal_PEDs[0:40,:,0].transpose(), showfliers=False, positions = np.arange(1,41), widths=0.3, patch_artist=True)
+# plt.setp(bpnonOptimal['boxes'], color='orange')
+# for patch in bpnonOptimal['boxes']:
+#     patch.set_facecolor('orange')
+#     patch.set_alpha(0.3)
+# ax.set_xticklabels(sorted_objs.iloc[0:40,0].values)
+# # plt.grid()
+# plt.show();
+
+# Pareto front
+fig = plt.figure()
+plt.scatter(objs.iloc[:,0],objs.iloc[:,1])
+plt.show();
 
 
+df = pd.read_pickle("/Users/iditbela/Documents/Borg_python/optimization_code/optimization_notebooks/WF_2004_2018_Hadera")
+# df is sorted
+# 144 states have certain probability different than zero
+numStates = df.loc[df.percent != 0,'s'].count()
+WF = []
+for state in range(numStates):
+    WF.append(df.iloc[state].percent)
+plt.scatter(np.arange(0,144),WF)
+plt.show();
 
+# from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+# look at the states and the performance of 1 random state
+r = 50
+i = 143
+fig, ax = plt.subplots()
+plt.scatter(np.arange(0,78), optimal_PEDs[:,i]*1e9)
+plt.scatter(np.arange(0,78), total_nonOptimal_PEDs[:,i,r]*1e9)
+plt.title('State: '+np.str(i)+' ,frequency: '+np.str(WF[i]))
+# axins = inset_axes(ax, width=1.3, height=0.9, loc=2)
+plt.show();
 
+# is the frequency of the states related to the performance of the optimal solution?
+numStates = df.loc[df.percent != 0,'s'].count()
+numOfSens = 10
+res = np.zeros(numStates)
+for state in range(numStates):
+    total_cnt = 0
+    for r in range(100):
+        temp = total_nonOptimal_PEDs[numOfSens-2,state,r]
+        if not (optimal_PEDs[numOfSens-2,state]>temp):
+            total_cnt += 1
+    res[state]=total_cnt/100
 
+plt.scatter(WF,res)
+plt.show()
 
 
