@@ -15,7 +15,8 @@ import data_preparation_functions
 import objective_function
 
 # (1) initialize the simulation
-emissionRates = np.array([0.47,0.51,0.38,0.9,0.19])
+# emissionRates = np.array([0.47,0.51,0.38,0.9,0.19])
+emissionRates = np.array([0.5,0.5,0.5,0.5,0.5])
 sourceLoc = np.array([[200,300],[300,700],[650,400],[450,200],[200,500]])
 num_S = np.shape(emissionRates)[0]
 distanceBetweenSensors = 50
@@ -25,8 +26,9 @@ Q_source, sensorArray, sensors_to_exclude = \
     data_preparation_functions.initializeSimulation(num_S, sourceLoc, emissionRates,
                                                     distanceBetweenSensors, distanceFromSource)
 
-# (2) calculate readings (totalField)
-# ******* readings for all states *******
+# # (2) calculate readings (totalField)
+# # ******* readings for all states *******
+# # totalField = np.load('weightedField.npy') # just for the size
 # df = pd.read_pickle("/Users/iditbela/Documents/Borg_python/optimization_code/optimization_notebooks/WF_2004_2018_Hadera")
 # # df is sorted
 # weightedField = np.zeros(np.shape(totalField))
@@ -40,29 +42,29 @@ Q_source, sensorArray, sensors_to_exclude = \
 #     totalField, total_active = data_preparation_functions.calcSensorsReadings(Q_source, sensorArray, WD, WS, ASC)
 #     mask=np.ones(np.shape(totalField))*wf
 #     weightedField = weightedField + totalField*mask
-# np.save('weightedField', weightedField)
+# # np.save('weightedField', weightedField)
+# # np.save('weightedField_Q_equal', weightedField)
 
-
-df = pd.read_pickle("/Users/iditbela/Documents/Borg_python/optimization_code/optimization_notebooks/WF_2004_2018_Hadera")
-# df is sorted!!!
-weightedField = np.zeros(np.shape(totalField))
-# 144 states have certain probability different than zero
-numStates = df.loc[df.percent > 0.02,'s'].count()
-for state in range(numStates):
-    wf = df.iloc[state].percent
-    WD = df.iloc[state].WD_to_apply
-    WS = df.iloc[state].WS_to_apply
-    ASC = df.iloc[state].SC_to_apply
-    totalField, total_active = data_preparation_functions.calcSensorsReadings(Q_source, sensorArray, WD, WS, ASC)
-    mask=np.ones(np.shape(totalField))*wf
-    weightedField = weightedField + totalField*mask
-np.save('weightedField_WF_larger_002', weightedField)
-
+# Running for frequencies larger than 0.2:
+# df = pd.read_pickle("/Users/iditbela/Documents/Borg_python/optimization_code/optimization_notebooks/WF_2004_2018_Hadera")
+# # df is sorted!!!
+# weightedField = np.zeros(np.shape(totalField))
+# # 144 states have certain probability different than zero
+# numStates = df.loc[df.percent > 0.02,'s'].count()
+# for state in range(numStates):
+#     wf = df.iloc[state].percent
+#     WD = df.iloc[state].WD_to_apply
+#     WS = df.iloc[state].WS_to_apply
+#     ASC = df.iloc[state].SC_to_apply
+#     totalField, total_active = data_preparation_functions.calcSensorsReadings(Q_source, sensorArray, WD, WS, ASC)
+#     mask=np.ones(np.shape(totalField))*wf
+#     weightedField = weightedField + totalField*mask
+# # np.save('weightedField_WF_larger_002', weightedField)
 
 # load the relevant average field
 # totalField = np.load('weightedField.npy')
-totalField = np.load('weightedField_WF_larger_002.npy')
-
+# totalField = np.load('weightedField_WF_larger_002.npy')
+totalField = np.load('weightedField_Q_equal.npy')
 
 # # a try
 # sensorIdx = np.array([100,200,300])
@@ -135,6 +137,6 @@ objs = pd.DataFrame(data = objs)
 vars = pd.DataFrame(data = vars)
 
 # save them
-objs.to_csv('objs_WF_larger_002.csv')
-vars.to_csv('vars_WF_larger_002.csv')
+objs.to_csv('objs_Q_equal.csv')
+vars.to_csv('vars_Q_equal.csv')
 np.save('nan_idx.npy', nan_idx)

@@ -2,7 +2,7 @@ import numpy as np
 import numpy.matlib as npMat
 import pandas as pd
 from itertools import combinations
-import optimization_pycharm.conf_class_func as conf
+import conf_class_func as conf
 
 def initializeSimulation(numOfSources, sourceLoc, emissionRates, distanceBetweenSensors, distanceFromSource):
     '''Initialize Q_source and sensorArray. sensorArray is given Nan in places to exclude
