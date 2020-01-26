@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c46b82cf-bbe5-4d61-b0d5-5527056e964d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea" beforeDir="false" afterPath="$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nan_idx.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimization_notebooks/.ipynb_checkpoints/results_analysis-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_notebooks/.ipynb_checkpoints/results_analysis-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimization_notebooks/results_analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_notebooks/results_analysis.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimization_pycharm/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_pycharm/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1080">
-              <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
               <folding>
                 <element signature="e#679#697#0" expanded="true" />
               </folding>
@@ -170,7 +164,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="810" />
+    <option name="height" value="813" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -536,7 +530,7 @@
     <entry file="file://$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1080">
-          <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
           <folding>
             <element signature="e#679#697#0" expanded="true" />
           </folding>
