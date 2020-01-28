@@ -15,10 +15,10 @@ import data_preparation_functions
 import objective_function
 
 # (1) initialize the simulation
-# emissionRates = np.array([0.47,0.51,0.38,0.9,0.19])
-emissionRates = np.array([0.5,0.5,0.5,0.5,0.5])
+emissionRates = np.array([0.47,0.51,0.38,0.9,0.19])
+# emissionRates = np.array([0.5,0.5,0.5,0.5,0.5])
 sourceLoc = np.array([[200,300],[300,700],[650,400],[450,200],[200,500]])
-num_S = np.shape(emissionRates)[0]
+num_S = np.shape(emissionRates)[0] # number of sources
 distanceBetweenSensors = 50
 distanceFromSource = 50
 
@@ -62,9 +62,10 @@ Q_source, sensorArray, sensors_to_exclude = \
 # # np.save('weightedField_WF_larger_002', weightedField)
 
 # load the relevant average field
-# totalField = np.load('weightedField.npy')
+totalField = np.load('weightedField.npy')
+total_active = np.load('total_active.npy')
 # totalField = np.load('weightedField_WF_larger_002.npy')
-totalField = np.load('weightedField_Q_equal.npy')
+# totalField = np.load('weightedField_Q_equal.npy')
 
 # # a try
 # sensorIdx = np.array([100,200,300])
@@ -97,7 +98,7 @@ tic=timeit.default_timer()
 runtime_frequency = 1000
 output_loc = '/Users/iditbela/Documents/Borg_python/optimization_code/optimization_pycharm/'
 result = borg.solve({"maxEvaluations":NFE,
-                     "runtime":output_loc + 'firstTry.runtime',
+                     "runtime":output_loc + 'hetero.runtime',
                      "frequency":runtime_frequency})
 
 toc=timeit.default_timer()

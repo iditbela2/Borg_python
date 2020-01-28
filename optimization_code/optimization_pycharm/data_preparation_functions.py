@@ -3,6 +3,7 @@ import numpy.matlib as npMat
 import pandas as pd
 from itertools import combinations
 import conf_class_func as conf
+import numpy.matlib as npm
 
 def initializeSimulation(numOfSources, sourceLoc, emissionRates, distanceBetweenSensors, distanceFromSource):
     '''Initialize Q_source and sensorArray. sensorArray is given Nan in places to exclude
@@ -106,11 +107,17 @@ def calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR):
     numOfSources = np.size(total_active, 1)
     sum_active = np.sum(total_active,axis=1)
 
-    # # (!!!!!!!!!!!!!! comment these lines if thr and dyR not applied)
-    # # for each row (sensor), apply thr and dyR
+    # (!!!!!!!!!!!!!! comment these lines if thr and dyR not applied)
+    # for each row (sensor), apply thr and dyR
     # for i in range(numOfSensors):
     #     chosen_readings[i, chosen_readings[i, :] < thr[i]] = 0
     #     chosen_readings[i, chosen_readings[i, :] > thr[i] * dyR[i]] = thr[i] * dyR[i]
+
+    # SOMETHING IS WRONG WITH THE SIZES HERE SINCE I REDUCE chosen_readings
+    total_thr = np.transpose(npm.repmat(thr, totalField.shape[1], 1))
+    total_dyR = np.transpose(npm.repmat(dyR, totalField.shape[1], 1))
+    chosen_readings[chosen_readings < total_thr] = 0
+    chosen_readings[chosen_readings > total_thr*total_dyR] = total_thr*total_dyR
 
     # calculate PEDs for the chosen sensors
     PEDs = []

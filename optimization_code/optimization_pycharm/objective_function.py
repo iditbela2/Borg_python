@@ -8,13 +8,23 @@ sys.path.append('/Users/iditbela/Documents/Borg_python/optimization_code/optimiz
 def objective_func_factory(totalField, total_active):
 
     def objective_func(*x):
+
+        # HETEROGENOUS
         objs = np.zeros((2,))
         constrs = np.zeros((2,))
 
         # OBJECTIVE - 1
-        # round the decision variables to 0 - no sensor and 1 - sensor is placed
-        x = np.round(x)
-        # objective 1 - minimize number of active sensors. LATER - minimize cost
+        # round the decision variables to:
+        # 0-0.2 - no sensor
+        # 0.2-0.4 - sensor type A
+        # 0.4-0.6 - sensor type B
+        # 0.6-0.8 - sensor type C
+        # 0.8-1 sensor type D
+
+        binedges = np.arange(0, 1, 0.2)
+        categories = np.digitize(x, binedges)
+
+        # objective 1 - minimize price of network. LATER - minimize cost
         objs[0] = np.sum(x)
 
         # CONSTRAINTS
@@ -26,18 +36,51 @@ def objective_func_factory(totalField, total_active):
         if objs[0] > cons2:
             constrs[1] = 1
 
-        # OBJECTIVE - 2s
+        # OBJECTIVE - 2
         sensorIdx = np.argwhere(x).ravel()
         thr, dyR = 1, 1
         PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR)
 
         # maximize min PEDs, given locations of active sensors.
         # scenario_pairs
-        [c, idx] = np.unique(np.sort(scenario_pairs[:,2:4],axis=1), axis=0, return_inverse=True)
+        [c, idx] = np.unique(np.sort(scenario_pairs[:, 2:4], axis=1), axis=0, return_inverse=True)
         min_PED = PEDs.groupby(idx).min()
         mean_PED = np.mean(min_PED)
 
         objs[1] = -mean_PED
         return objs, constrs
+
+        ## HOMOGENOUS
+        # objs = np.zeros((2,))
+        # constrs = np.zeros((2,))
+        #
+        # # OBJECTIVE - 1
+        # # round the decision variables to 0 - no sensor and 1 - sensor is placed
+        # x = np.round(x)
+        # # objective 1 - minimize number of active sensors. LATER - minimize cost
+        # objs[0] = np.sum(x)
+        #
+        # # CONSTRAINTS
+        # # constrain of minimum two sensors (more realistic) and maximum? 50/100/300
+        # cons1 = 2
+        # cons2 = 100
+        # if objs[0] < cons1:
+        #     constrs[0] = 1
+        # if objs[0] > cons2:
+        #     constrs[1] = 1
+        #
+        # # OBJECTIVE - 2
+        # sensorIdx = np.argwhere(x).ravel()
+        # thr, dyR = 1, 1
+        # PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR)
+        #
+        # # maximize min PEDs, given locations of active sensors.
+        # # scenario_pairs
+        # [c, idx] = np.unique(np.sort(scenario_pairs[:,2:4],axis=1), axis=0, return_inverse=True)
+        # min_PED = PEDs.groupby(idx).min()
+        # mean_PED = np.mean(min_PED)
+        #
+        # objs[1] = -mean_PED
+        # return objs, constrs
 
     return objective_func

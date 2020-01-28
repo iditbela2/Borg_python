@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c46b82cf-bbe5-4d61-b0d5-5527056e964d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea" beforeDir="false" afterPath="$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimization_notebooks/.ipynb_checkpoints/results_analysis-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_notebooks/.ipynb_checkpoints/results_analysis-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimization_notebooks/results_analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_notebooks/results_analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimization_pycharm/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_pycharm/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimization_pycharm/objective_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimization_pycharm/objective_function.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,11 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2058">
-              <caret line="127" column="12" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
+            <state relative-caret-position="305">
+              <caret line="27" selection-start-line="16" selection-end-line="27" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -49,8 +55,8 @@
       <file leaf-file-name="data_preparation_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1279">
-              <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
+            <state relative-caret-position="176">
+              <caret line="93" column="54" selection-start-line="93" selection-start-column="45" selection-end-line="93" selection-end-column="54" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -58,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="a_posteriori_analysis.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="a_posteriori_analysis.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1080">
-              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+            <state relative-caret-position="-824">
+              <caret line="83" column="8" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="8" />
               <folding>
                 <element signature="e#679#697#0" expanded="true" />
               </folding>
@@ -73,8 +79,8 @@
       <file leaf-file-name="objective_function.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/optimization_pycharm/objective_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+            <state relative-caret-position="331">
+              <caret line="41" column="72" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="72" />
               <folding>
                 <element signature="e#161#179#0" expanded="true" />
               </folding>
@@ -132,6 +138,9 @@
       <find>weigh</find>
       <find>wei</find>
       <find>ax</find>
+      <find>weightedField_Q_equal</find>
+      <find>total_active</find>
+      <find>weightedField</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -146,9 +155,9 @@
         <option value="$PROJECT_DIR$/optimization_pycharm/conf_class_func.py" />
         <option value="$PROJECT_DIR$/optimization_pycharm/data_preperation_functions.py" />
         <option value="$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py" />
+        <option value="$PROJECT_DIR$/optimization_pycharm/main.py" />
         <option value="$PROJECT_DIR$/optimization_pycharm/objective_function.py" />
         <option value="$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py" />
-        <option value="$PROJECT_DIR$/optimization_pycharm/main.py" />
       </list>
     </option>
   </component>
@@ -161,10 +170,10 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="813" />
+    <option name="height" value="809" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -172,6 +181,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,7 +193,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,7 +341,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="809" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="809" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -340,12 +349,12 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.4768786" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32947975" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="7" visible="true" weight="0.29667148" />
+      <window_info anchor="bottom" id="Python Console" order="7" visible="true" weight="0.3024602" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32905984" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17795388" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20605187" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3299712" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4989429" visible="true" weight="0.23991354" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4989429" visible="true" weight="0.16426513" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39884394" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -359,6 +368,31 @@
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Coverage" order="3" side_tool="true" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18083574" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32947975" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4989429" visible="true" weight="0.19956772" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4768786" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.30535457" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39884394" />
+      <window_info anchor="right" x="0" y="0" width="310" height="610" id="Documentation" order="6" sideWeight="0.5010571" side_tool="true" weight="0.37824208" />
+      <window_info anchor="right" id="Database" order="4" weight="0.3299712" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32905984" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -367,6 +401,60 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/optimization_pycharm/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2074">
+          <caret line="127" column="12" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1904">
+          <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optimization_pycharm/objective_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+          <folding>
+            <element signature="e#161#179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Borg_downloaded_code/serial-borg-moea/plugins/Python/borg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2584">
+          <caret line="155" column="17" selection-start-line="155" selection-start-column="17" selection-end-line="155" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optimization_pycharm/conf_class_func.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1887">
+          <caret line="111" column="52" selection-start-line="111" selection-start-column="52" selection-end-line="111" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+          <folding>
+            <element signature="e#679#697#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/optimization_pycharm/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1513">
@@ -499,40 +587,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/optimization_pycharm/objective_function.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+        <state relative-caret-position="331">
+          <caret line="41" column="72" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="72" />
           <folding>
             <element signature="e#161#179#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/optimization_pycharm/main.py">
+    <entry file="file://$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2058">
-          <caret line="127" column="12" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
+        <state relative-caret-position="-824">
+          <caret line="83" column="8" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="8" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#679#697#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/optimization_pycharm/data_preparation_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1279">
-          <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
+        <state relative-caret-position="176">
+          <caret line="93" column="54" selection-start-line="93" selection-start-column="45" selection-end-line="93" selection-end-column="54" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/optimization_pycharm/a_posteriori_analysis.py">
+    <entry file="file://$PROJECT_DIR$/optimization_pycharm/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1080">
-          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        <state relative-caret-position="305">
+          <caret line="27" selection-start-line="16" selection-end-line="27" />
           <folding>
-            <element signature="e#679#697#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
