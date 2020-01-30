@@ -14,32 +14,43 @@ def objective_func_factory(totalField, total_active):
         constrs = np.zeros((2,))
 
         # OBJECTIVE - 1
+        lenSensArray = len(x)/2
+        x1 = np.round(x[:int(lenSensArray)]) # sensor/no-sensor
+        x2 = x[int(lenSensArray):] # type of sensor
         # round the decision variables to:
-        # 0-0.2 - no sensor
-        # 0.2-0.4 - sensor type A
-        # 0.4-0.6 - sensor type B
-        # 0.6-0.8 - sensor type C
-        # 0.8-1 sensor type D
+        # 0-1/3 - sensor type 1
+        # 1/3-2/3 - sensor type 2
+        # 2/3-1 - sensor type 3
 
-        binedges = np.arange(0, 1, 0.2)
-        categories = np.digitize(x, binedges)
+        binedges = np.arange(0, 1, 1/3)
+        x2 = np.digitize(x2, binedges)
 
-        # objective 1 - minimize price of network. LATER - minimize cost
-        objs[0] = np.sum(x)
+        # data dictionary (multiply in 1e-9 since I looked at the plot in microgram/m^3 to decide these values)
+        THR = dict([(1,1e-9*10**-1), (2,1e-9*10**4), (3,1e-9*10**-9)])
+        DYR = dict([(1,10**5), (2,10**3), (3,10**16)])
+        COST = dict([(1, 50), (2, 500), (3, 5000)])
+
+        # insert THR,DYR to each sensor
+        thr = np.vectorize(THR.get)(x2)
+        dyR = np.vectorize(DYR.get)(x2)
+
+        # multiply x1 and x2
+        cost = np.vectorize(COST.get)(x2)*x1
+        # minimize cost of network.
+        objs[0] = np.sum(cost)
 
         # CONSTRAINTS
         # constrain of minimum two sensors (more realistic) and maximum? 50/100/300
         cons1 = 2
         cons2 = 100
-        if objs[0] < cons1:
+        if np.sum(x1) < cons1:
             constrs[0] = 1
-        if objs[0] > cons2:
+        if np.sum(x1) > cons2:
             constrs[1] = 1
 
         # OBJECTIVE - 2
-        sensorIdx = np.argwhere(x).ravel()
-        thr, dyR = 1, 1
-        PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR)
+        sensorIdx = np.argwhere(x1).ravel()
+        PEDs, scenario_pairs = data_preparation_functions.calcSensorsPED(totalField, total_active, sensorIdx, thr[sensorIdx], dyR[sensorIdx])
 
         # maximize min PEDs, given locations of active sensors.
         # scenario_pairs

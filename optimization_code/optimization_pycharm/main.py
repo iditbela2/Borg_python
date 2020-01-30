@@ -80,7 +80,7 @@ totalField = np.delete(totalField, nan_idx, axis=0)
 np.shape(totalField)
 
 # run borg
-NumOfVars = NumOfSens_reduced  # Number of sensors
+NumOfVars = NumOfSens_reduced*2  # Number of sensors. #*2 is for 2 arrays - one is sensor/no-sensor and the other is type of sensor
 NumOfObj = 2 # Number of Objectives
 NumOfCons = 2
 NFE=10e5 # the number of objective function evaluations, defines how many times
@@ -126,6 +126,7 @@ print("elapsed time [sec]" + str(toc - tic))
 for solution in result:
     print(solution.getObjectives())
 
+
 # extract vars and objs
 objs = []
 vars = []
@@ -138,6 +139,11 @@ objs = pd.DataFrame(data = objs)
 vars = pd.DataFrame(data = vars)
 
 # save them
-objs.to_csv('objs_Q_equal.csv')
-vars.to_csv('vars_Q_equal.csv')
+objs.to_csv('objs_hetero.csv')
+vars.to_csv('vars_hetero.csv')
 np.save('nan_idx.npy', nan_idx)
+
+
+# plot
+plt.plot(objs.iloc[:,0],-objs.iloc[:,1],'*')
+plt.show()

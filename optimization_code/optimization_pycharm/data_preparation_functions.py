@@ -93,7 +93,7 @@ def calcSensorsReadings(Q_source, sensorArray, WD, WS, ASC):
 
 def calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR):
     '''WF???not sure what to do with it..., The function calculates all PEDs only for situations of different number of active sources,
-    given sensorIdx - an array of sensor locations (location index(row) of sensorArray) and an array of sensors sensitivity
+    given sensorIdx - an array of sensor locations (location index(row) of sensorArray) and an array of sensors detection-limit
     (thr) and dynamic range (accordingly). The function should be used during the optimization process.
     PEDs is nX1 matrix where n=number of situations with different number of active sources.
     Scenario pairs specifies each pair of scenarios corresponding to the PED row in PEDs and the
@@ -103,9 +103,9 @@ def calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR):
     # choose the relevant rows(=sensors) according to sensorIdx
 
     chosen_readings = totalField[sensorIdx, :]
-    numOfSensors = np.size(sensorIdx)
-    numOfSources = np.size(total_active, 1)
-    sum_active = np.sum(total_active,axis=1)
+    # numOfSensors = np.size(sensorIdx)
+    # numOfSources = np.size(total_active, 1)
+    sum_active = np.sum(total_active, axis=1)
 
     # (!!!!!!!!!!!!!! comment these lines if thr and dyR not applied)
     # for each row (sensor), apply thr and dyR
@@ -114,10 +114,11 @@ def calcSensorsPED(totalField, total_active, sensorIdx, thr, dyR):
     #     chosen_readings[i, chosen_readings[i, :] > thr[i] * dyR[i]] = thr[i] * dyR[i]
 
     # SOMETHING IS WRONG WITH THE SIZES HERE SINCE I REDUCE chosen_readings
-    total_thr = np.transpose(npm.repmat(thr, totalField.shape[1], 1))
-    total_dyR = np.transpose(npm.repmat(dyR, totalField.shape[1], 1))
+    total_thr = np.transpose(npm.repmat(thr, chosen_readings.shape[1], 1))
+    total_dyR = np.transpose(npm.repmat(dyR, chosen_readings.shape[1], 1))
     chosen_readings[chosen_readings < total_thr] = 0
-    chosen_readings[chosen_readings > total_thr*total_dyR] = total_thr*total_dyR
+    index = chosen_readings > total_thr*total_dyR
+    chosen_readings[index] = total_thr[index]*total_dyR[index]
 
     # calculate PEDs for the chosen sensors
     PEDs = []

@@ -250,3 +250,8 @@ plt.scatter(WF,res)
 plt.show()
 
 
+# (3) (instead of source-term estimation...) Generate a stochastic time series of emissions
+# from all sources,
+# mark 1,2,3,4,5...(32? decide how many classes) for labeling over-emitting sources.
+# train a classifier to estimate ability of network to detect
+# a Gaussian process signal - does it create a stationary series? (i.e., with no trends)
